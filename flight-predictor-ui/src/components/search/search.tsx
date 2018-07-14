@@ -8,7 +8,6 @@ import {
   Form,
   FormControl,
   FormGroup,
-  Panel,
   Radio
 } from "react-bootstrap";
 import { airlines } from "../../data/airlines";
@@ -25,9 +24,6 @@ export class Search extends React.Component<ISearchProps> {
   public render() {
     return (
       <div className="search">
-        <Panel>
-          <Panel.Body>Flight Delay Predictor</Panel.Body>
-        </Panel>
         <Form horizontal={true}>
           {this.renderAirlines()}
           <FormGroup controlId="formBasicText" className="city">
@@ -35,12 +31,32 @@ export class Search extends React.Component<ISearchProps> {
               Departing City
             </Col>
             <Col sm={8}>
-              <FormControl type="text" value={""} placeholder="Enter text" />
+              <FormControl type="text" value={"NY"} placeholder="Enter text" />
+            </Col>
+            <FormControl.Feedback />
+          </FormGroup>
+          <FormGroup controlId="formBasicText" className="city">
+            <Col componentClass={ControlLabel} sm={2}>
+              Time
+            </Col>
+            <Col sm={8}>
+              <FormControl type="time" value={""} placeholder="Enter text" />
+            </Col>
+            <FormControl.Feedback />
+          </FormGroup>
+          <FormGroup controlId="formBasicText" className="city">
+            <Col componentClass={ControlLabel} sm={2}>
+              Date Range
+            </Col>
+            <Col sm={8}>
+              <FormControl type="date" value={""} placeholder="Enter text" />
             </Col>
             <FormControl.Feedback />
           </FormGroup>
         </Form>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" onClick={this.props.onSearch}>
+          Submit
+        </Button>
       </div>
     );
   }
